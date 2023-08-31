@@ -8,7 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Titolo --}}
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+    {{-- Icona --}}
+    <link rel="icon"
+        href="https://th.bing.com/th/id/OIP.2zBqt3zLQNbVCtVgElRc1AHaHa?w=172&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

@@ -3,11 +3,9 @@
     <div class="jumbotron p-5 mb-4 bg-light rounded-3">
         <div class="container py-5">
             <h1 class="display-5 fw-bold">
-                Portfolio Andrea Creazzi
+                Andrea Creazzi | Web Developer
             </h1>
-
             <p class="col-md-8 fs-4 mb-0">Entra in un mondo di possibiltà con un Junior Full-Stack-developer.</p>
-            <p class="col-md-8 fs-4">Questa parte di pagina ci saranno i miei progetti miglori</p>
         </div>
     </div>
 
