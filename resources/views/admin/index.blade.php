@@ -23,11 +23,18 @@
                             <td><a class="text-decoration-none text-white"
                                     href="{{ $project->link }}">{{ $project->link }}</a></td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.show', $project) }}"><i
-                                        class="fas fa-eye"></i></a>
-                                <a class="btn btn-warning btn-sm mx-2" href="#"><i
-                                        class="fas fa-pencil text-white"></i></a>
-                                <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i></a>
+                                <div class="d-flex">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.show', $project) }}"><i
+                                            class="fas fa-eye"></i></a>
+                                    <a class="btn btn-warning btn-sm mx-2" href="#"><i
+                                            class="fas fa-pencil text-white"></i></a>
+                                    <form action="{{ route('admin.admin.destroy', $project) }}" method="POST"
+                                        class="delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty
@@ -38,4 +45,9 @@
                 </tbody>
             </table>
         </div>
-    @endsection
+    </div>
+@endsection
+
+@section('script')
+    @vite('resources\js\delete-confirmation.js');
+@endsection

@@ -23,15 +23,16 @@
 
 <body>
     <div id="app">
-
         <header>
             @include('includes.navbar')
         </header>
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 
 </html>
