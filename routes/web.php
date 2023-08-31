@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [GuestProjectController::class, 'index'])->name('guest.home');
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [AdminProjectController::class, 'index'])->name('index');
+    Route::resource('admin', AdminProjectController::class);
 });
 
 Route::middleware('auth')->group(function () {
