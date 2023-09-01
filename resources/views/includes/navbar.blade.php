@@ -23,8 +23,8 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link @if (request()->routeIs('admin.admin*')) active @endif"
-                            href="{{ route('admin.admin.index') }}">Projects</a>
+                        <a class="nav-link @if (request()->routeIs('admin.projects*')) active @endif"
+                            href="{{ route('admin.projects.index') }}">Projects</a>
                     </li>
                 @endauth
             </ul>
@@ -49,7 +49,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.admin.index') }}">Projects</a>
+                            <a class="dropdown-item" href="{{ route('admin.projects.index') }}">Projects</a>
                             <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

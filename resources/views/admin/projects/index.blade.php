@@ -6,7 +6,7 @@
             <h2 class="fs-4 text-secondary my-4">
                 Progetti
             </h2>
-            <a class="btn btn-success" href="{{ route('admin.admin.create') }}">Nuovo Progetto</a>
+            <a class="btn btn-success" href="{{ route('admin.projects.create') }}">Nuovo Progetto</a>
         </div>
         <div class="row justify-content-center">
             <table class="table table-dark table-striped">
@@ -27,11 +27,11 @@
                                     href="{{ $project->link }}">{{ $project->link }}</a></td>
                             <td>
                                 <div class="d-flex">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.show', $project) }}"><i
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.projects.show', $project) }}"><i
                                             class="fas fa-eye"></i></a>
 
-                                    <a href="{{ route('admin.admin.edit', $project) }}">edit</a>
-                                    <form action="{{ route('admin.admin.destroy', $project) }}" method="POST"
+                                    <a href="{{ route('admin.projects.edit', $project) }}">edit</a>
+                                    <form action="{{ route('admin.projects.destroy', $project) }}" method="POST"
                                         class="delete-form">
                                         @csrf
                                         @method('DELETE')

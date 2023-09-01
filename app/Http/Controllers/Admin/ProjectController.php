@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('admin.index', compact('projects'));
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -23,7 +23,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.projects.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class ProjectController extends Controller
         ]);
         $project->fill($data);
         $project->save();
-        return to_route('admin.admin.show');
+        return to_route('admin.projects.show');
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         $projects = Project::findOrFail($id);
-        return view('admin.show', compact('projects'));
+        return view('admin.projects.show', compact('projects'));
     }
 
     /**
@@ -57,17 +57,18 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        ddd($project);
-        return view('admin.edit', compact('project'));
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, string $id)
     {
+        $project = Project::findOrFail($id);
+
         $request->validate([
-            'title' => ['required', 'string', Rule::unique('projects')->ignore($project)],
+            'title' => ['required', 'string', Rule::unique('projects')->ignore($id)],
             'description' => 'required|string',
             'link' => 'required|url:http,https',
         ]);
@@ -75,8 +76,9 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $project->update($data);
+        dd($project);
 
-        return to_route('admin.admin.index', $project);
+        return to_route('admin.projects.show', $project->id);
     }
 
     /**
@@ -85,6 +87,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return to_route('admin.admin.index');
+        return to_route('admin.projects.index');
     }
 }
