@@ -42,7 +42,8 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="link">Git Hub</label>
-                                    <input type="url" class="form-control @error('link') is-invalid @enderror"
+                                    <input type="url"
+                                        class="form-control @error('link') is-invalid @elseif(old('link')) is-valid @enderror"
                                         id="link" name="link" placeholder="Inserisci link"
                                         value="{{ old('link') }}" required>
                                     @error('link')
@@ -53,8 +54,9 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="description">Descrizione</label>
-                                    <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Inserisci descrizione"
-                                        id="description" name="description" style="height: 100px" value="{{ old('description') }}" required></textarea>
+                                    <textarea class="form-control @error('description') is-invalid @elseif(old('description')) is-valid @enderror"
+                                        placeholder="Inserisci descrizione" id="description" name="description" style="height: 100px"
+                                        value="{{ old('description') }}" required></textarea>
                                     @error('description')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
