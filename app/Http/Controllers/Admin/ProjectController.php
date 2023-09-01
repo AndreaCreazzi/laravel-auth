@@ -34,13 +34,13 @@ class ProjectController extends Controller
         $data = $request->all();
         $project = new Project();
         $request->validate([
-            'title' => 'required|string|unique:projects',
+            'title' => 'required|string',
             'description' => 'required|string',
             'link' => 'required|url:http,https',
         ]);
         $project->fill($data);
         $project->save();
-        return to_route('admin.projects.show');
+        return to_route('admin.projects.show', $project);
     }
 
     /**
@@ -68,7 +68,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         $request->validate([
-            'title' => ['required', 'string', Rule::unique('projects')->ignore($id)],
+            'title' => ['required', 'string'],
             'description' => 'required|string',
             'link' => 'required|url:http,https',
         ]);
@@ -76,7 +76,6 @@ class ProjectController extends Controller
         $data = $request->all();
 
         $project->update($data);
-        dd($project);
 
         return to_route('admin.projects.show', $project->id);
     }
