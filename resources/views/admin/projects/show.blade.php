@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $projects->title }}</h5>
                         <p class="card-text">{{ $projects->description }}</p>
-                        <a href="{{ route('admin.admin.index') }}" class="btn btn-primary">Torna indietro</a>
+                        <a href="{{ route('admin.projects.index') }}" class="btn btn-primary">Torna indietro</a>
                     </div>
                 </div>
             </div>
