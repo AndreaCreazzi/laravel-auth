@@ -2,9 +2,12 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
-            Progetti
-        </h2>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="fs-4 text-secondary my-4">
+                Progetti
+            </h2>
+            <a class="btn btn-success" href="{{ route('admin.admin.create') }}">Nuovo Progetto</a>
+        </div>
         <div class="row justify-content-center">
             <table class="table table-dark table-striped">
                 <thead>
