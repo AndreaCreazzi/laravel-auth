@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -39,7 +40,7 @@ class ProjectController extends Controller
         ]);
         $project->fill($data);
         $project->save();
-        return to_route('heroes.index');
+        return to_route('admin.admin.show');
     }
 
     /**
@@ -56,7 +57,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        ddd($project);
+        return view('admin.edit', compact('project'));
     }
 
     /**
@@ -64,7 +66,17 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', Rule::unique('projects')->ignore($project)],
+            'description' => 'required|string',
+            'link' => 'required|url:http,https',
+        ]);
+
+        $data = $request->all();
+
+        $project->update($data);
+
+        return to_route('admin.admin.index', $project);
     }
 
     /**

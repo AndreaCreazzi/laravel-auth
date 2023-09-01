@@ -29,8 +29,8 @@
                                 <div class="d-flex">
                                     <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.show', $project) }}"><i
                                             class="fas fa-eye"></i></a>
-                                    <a class="btn btn-warning btn-sm mx-2" href="#"><i
-                                            class="fas fa-pencil text-white"></i></a>
+
+                                    <a href="{{ route('admin.admin.edit', $project) }}">edit</a>
                                     <form action="{{ route('admin.admin.destroy', $project) }}" method="POST"
                                         class="delete-form">
                                         @csrf
