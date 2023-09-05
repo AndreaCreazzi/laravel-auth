@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
@@ -33,10 +34,15 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $project = new Project();
+        if (array_key_exists('image', $data)) {
+            $img_url = Storage::putFile('project_images', $data['image']);
+            $data['image'] = $img_url;
+        };
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
             'link' => 'required|url:http,https',
+            'image' => 'nullable|image'
         ]);
         $project->fill($data);
         $project->save();
@@ -71,9 +77,16 @@ class ProjectController extends Controller
             'title' => ['required', 'string'],
             'description' => 'required|string',
             'link' => 'required|url:http,https',
+            'image' => 'nullable|image'
         ]);
 
         $data = $request->all();
+
+        if (array_key_exists('image', $data)) {
+            if ($project->image) Storage::delete($project->image);
+            $img_url = Storage::putFile('project_images', $data['image']);
+            $data['image'] = $img_url;
+        };
 
         $project->update($data);
 

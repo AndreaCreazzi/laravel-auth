@@ -24,7 +24,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.projects.store') }}" method="POST" novalidate>
+                    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data"
+                        novalidate>
                         @csrf
                         <div class="row">
                             <div class="col-6">
@@ -47,6 +48,17 @@
                                         id="link" name="link" placeholder="Inserisci link"
                                         value="{{ old('link') }}" required>
                                     @error('link')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="image">Immagine</label>
+                                    <input type="file"
+                                        class="form-control @error('image') is-invalid @elseif(old('image')) is-valid @enderror"
+                                        id="image" name="image" placeholder="Inserisci image">
+                                    @error('image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

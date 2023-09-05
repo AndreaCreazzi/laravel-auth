@@ -23,8 +23,18 @@
                                     href="{{ $project->link }}">{{ $project->link }}</a>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ $project->title }}</h5>
-                                <p class="card-text">{{ $project->description }}</p>
+                                <div class="row">
+                                    @if ($project->image)
+                                        <div class="col-6 text-center">
+                                            <img class="img-fluid" style="height: 100px"
+                                                src="{{ asset('storage/' . $project->image) }}" alt="">
+                                        </div>
+                                    @endif
+                                    <div class="col-6">
+                                        <h5 class="card-title">{{ $project->title }}</h5>
+                                        <p class="card-text">{{ $project->description }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
